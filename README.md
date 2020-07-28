@@ -8,7 +8,7 @@ Our data is temperature measurements across the USA, in various days. Each day w
 
 Below is an example of an input graph - blue nodes are cities for which we have temperature data, and the red nodes are cities for which we want to infer the temperature.
 
-![Image of graph](cities_dominating_set.PNG)
+![Image of graph](cities_dominating_set.png)
 
 Data structure and algorithm -
 
