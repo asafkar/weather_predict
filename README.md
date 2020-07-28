@@ -11,12 +11,12 @@ Below is an example of an input graph - blue nodes are cities for which we have 
 ![Image of graph](cities_dominating_set.png)
 
 Data structure and algorithm -
+- Edges - distance between locations (unlearned)
+- Nodes - 7 dimensional features. Altitude and month are pre-initialized and not learned, 3 more dimensions are learned and shared between all dates, and temperature is partially learned (partial supervision - part of the nodes are the input, the rest are learned (initialized with 0). Another feature vector which indicates by one-hot-encoding which temperature measurement is blank.
+- Output - one label per node (temp is the ground-truth). Gradients are taken on all nodes.
+- Training - a training loop for each day ('dt' column). Learned features (edges and part of the node dimensions) are shared between samples.
+- Inference - no learning at all. Using the last learned features of the network. Check on test data, which has unseen dates.
 
-Edges - distance between locations (unlearned)
-Nodes - 7 dimensional features. Altitude and month are pre-initialized and not learned. 3 more dimensions are learned and shared between all dates, and temperature is partially learned (partial supervision - part of the nodes are the input, the rest are learned (initialized with 0). Another feature vector which indicates by one-hot-encoding which temperature measurement is blank.
-Output - one label per node (temp is the ground-truth). Gradients are taken on all nodes.
-Training - a training loop for each day ('dt' column). Learned features (edges and part of the node dimensions) are shared between samples.
-Inference - no learning at all. Using the last learned features of the network. Check on test data, which has unseen dates.
 Below is a diagram which describes our flow - Given data with temperature samples in various locations, we want to learn the temperature of neighboring areas. We create a graph from the samples, initialize the nodes and edges as described previously. We then learn the missing temperatures using our model.
 
 ![Image of Net Scheme](network_scheme.PNG)
